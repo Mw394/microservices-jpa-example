@@ -21,10 +21,6 @@ public class CarPO {
     @Column(name = "MODEL", columnDefinition = "varchar(15)", nullable = false)
     private String model;
 
-    /*
-    1-many One directional association with Car as the owning side.
-     */
-
     @ManyToOne()
     @JoinColumn(name = "owner_fk", referencedColumnName = "id", insertable = false, updatable = false)
     private OwnerPO owner;

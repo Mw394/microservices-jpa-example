@@ -10,6 +10,8 @@ import org.acme.resource.dto.CreateOwnerDTO;
 
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.List;
 
 @Dependent
 public class OwnerService {
@@ -35,5 +37,9 @@ public class OwnerService {
 
     public void createCar(int id, CreateCarDTO createCarDTO) {
         repo.createCar(id, createCarDTO);
+    }
+
+    public List<Owner> getByName(String name) {
+        return repo.getByName(name);
     }
 }

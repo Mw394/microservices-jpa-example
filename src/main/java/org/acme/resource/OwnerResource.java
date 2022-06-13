@@ -1,5 +1,6 @@
 package org.acme.resource;
 
+import org.acme.domain.Owner;
 import org.acme.resource.dto.*;
 import org.acme.service.OwnerService;
 
@@ -8,6 +9,9 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Path("/owners")
 public class OwnerResource {
@@ -41,6 +45,17 @@ public class OwnerResource {
     @Path("/createCar/{ownerID}")
     public void createCar(@PathParam("ownerID") int id, CreateCarDTO createCarDTO) {
         ownerService.createCar(id, createCarDTO);
+    }
+
+    @GET
+    @Path("/getByName/{name}")
+    public List<OwnerDTO> getByName(@PathParam("name") String name) {
+        List<Owner> owners = ownerService.getByName(name);
+        if (owners != null) {
+            return owners.stream().map(OwnerDTO::new).collect(Collectors.toList());
+        } else {
+            return null;
+        }
     }
 
 }

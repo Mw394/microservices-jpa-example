@@ -12,7 +12,10 @@ import org.acme.resource.dto.CreateOwnerDTO;
 
 import javax.enterprise.context.Dependent;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Dependent
 @Transactional
@@ -46,6 +49,14 @@ public class Repo {
         OwnerPO ownerPO = entityManager.find(OwnerPO.class, id);
         CarPO carPO = new CarPO(createCarDTO.getMake(), createCarDTO.getModel(), ownerPO);
         ownerPO.getCars().add(carPO);
+    }
+
+    public List<Owner> getByName(String name) {
+        try {
+            return entityManager.createNamedQuery(OwnerPO.FIND_BY_NAME, OwnerPO.class).setParameter(OwnerPO.FIND_BY_NAME_PARAMETER, name).getResultList().stream().map(OwnerPO::toOwner).collect(Collectors.toList());
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 
 }

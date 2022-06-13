@@ -3,6 +3,7 @@ package org.acme.repo.entity;
 import org.acme.domain.Car;
 import org.acme.domain.Owner;
 
+import javax.inject.Named;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,8 +11,14 @@ import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "OWNER")
+@NamedQueries({
+        @NamedQuery(name = "OwnerPO.FindByName", query = "Select o from OwnerPO o where o.name=:name"),
+
+})
 public class OwnerPO {
 
+    public static final String FIND_BY_NAME = "OwnerPO.FindByName";
+    public static final String FIND_BY_NAME_PARAMETER = "name";
 
     @Id
     @GeneratedValue

@@ -5,7 +5,7 @@ import org.acme.domain.License;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "LICIENSE")
+@Table(name = "LICENSE")
 public class LicensePO {
 
     @Id
@@ -13,7 +13,7 @@ public class LicensePO {
     @Column(name = "ID", columnDefinition = "int")
     private int id;
 
-    @Column(name = "EXPIRESYEAR", columnDefinition = "int", nullable = false)
+    @Column(name = "EXPIREYEAR", columnDefinition = "int", nullable = false)
     private int expireYear;
 
 

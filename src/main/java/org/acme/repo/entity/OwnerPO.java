@@ -32,17 +32,22 @@ public class OwnerPO {
     private int age;
 
     /*
-    1-1 Association with liciensePO.
+    1-1 Association with licensePO.
      */
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    @JoinColumn(name = "liciense_fk", referencedColumnName = "id" )
+    @JoinColumn(name = "license_fk", referencedColumnName = "id" )
     private LicensePO license;
 
     /*
     1-Many one way directional association with OwnerPO as owner.
-     */
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "owner_fk", referencedColumnName = "id", nullable = false)
+     */
+
+    /*
+    1-Many bi-directional association.
+     */
+    @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
     private List<CarPO> cars;
 
 

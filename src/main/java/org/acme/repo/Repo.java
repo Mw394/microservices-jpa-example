@@ -48,7 +48,8 @@ public class Repo {
     public void createCar(int id, CreateCarDTO createCarDTO) {
         OwnerPO ownerPO = entityManager.find(OwnerPO.class, id);
         CarPO carPO = new CarPO(createCarDTO.getMake(), createCarDTO.getModel(), ownerPO);
-        ownerPO.getCars().add(carPO);
+        entityManager.persist(carPO); // bruges hvis det er bi-directional
+        //ownerPO.getCars().add(carPO); Bruges hvis det er one-directional
     }
 
     public List<Owner> getByName(String name) {

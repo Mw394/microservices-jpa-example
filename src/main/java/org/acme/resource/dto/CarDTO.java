@@ -7,13 +7,15 @@ public class CarDTO {
     private String make;
     private String model;
     private int id;
-    private OwnerDTO ownerDTO;
+    private String ownerName;
+    private int ownerAge;
 
     public CarDTO(Car car) {
         this.make = car.getMake();
         this.model = car.getModel();
         this.id = car.getId();
-        this.ownerDTO = new OwnerDTO(car.getOwner());
+        this.ownerName = car.getOwner().getName();
+        this.ownerAge = car.getOwner().getAge();
     }
 
     public String getMake() {
@@ -28,8 +30,11 @@ public class CarDTO {
         return id;
     }
 
-    public OwnerDTO getOwnerDTO() {
-        return ownerDTO;
+    public String getOwnerName() {
+        return ownerName;
+    }
+    public int getOwnerAge() {
+        return ownerAge;
     }
 }
 

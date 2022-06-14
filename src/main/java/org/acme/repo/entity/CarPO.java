@@ -22,7 +22,7 @@ public class CarPO {
     private String model;
 
     @ManyToOne()
-    @JoinColumn(name = "owner_fk", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "owner_fk", referencedColumnName = "id")
     private OwnerPO owner;
 
 

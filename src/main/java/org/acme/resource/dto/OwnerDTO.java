@@ -20,6 +20,8 @@ public class OwnerDTO {
         this.id = owner.getId();
         this.licenseDTO = new LicenseDTO(owner.getLicense());
         if (owner.getCars() != null) {
+            System.out.println("works");
+            System.out.println((ArrayList<CarDTO>) owner.getCars().stream().map(CarDTO::new).collect(Collectors.toList()));
             this.cars = (ArrayList<CarDTO>) owner.getCars().stream().map(CarDTO::new).collect(Collectors.toList());
         }
     }
